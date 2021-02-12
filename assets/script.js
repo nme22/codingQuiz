@@ -100,7 +100,6 @@ function endQuiz() {
     $(".hideQuiz").hide();
     document.getElementById('timer').innerHTML = "Get off the pitch!";
     clearInterval(myTime);
-    console.log(quiz.innerHTML);
     highScores();
 }
 
@@ -119,13 +118,36 @@ function highScores() {
 
 function saveScore() {
 
-    console.log("We got to save");
-    var score = document.getElementById("score");
-    var name = document.getElementById("highScore");
-    console.log(score.innerText);
-    console.log(name.value);
+    var score = document.getElementById("score").innerText;
+    var name = document.getElementById("highScore").value;
+    console.log(score);
+    console.log(name);
+    let highscores = [];
+
+    if (JSON.parse(localStorage.getItem("highscores")) === null) {
+        localStorage.setItem("highscores", JSON.stringify(highscores))
+    }
+    var newHighScore = {
+        score,
+        name
+    }
+
+    highscores = [newHighScore, ...JSON.parse(localStorage.getItem("highscores"))];
+
+
+    localStorage.setItem("highscores", JSON.stringify(highscores));
+
+    var listScores = document.createElement("ul")
+
+    JSON.parse(localStorage.getItem("highscores")).map(function (score) {
+        console.log("HEY IRAN");
+        var li = document.createElement("li")
+        li.innerHTML = `${score.name} -- ${score.score}`
+        listScores.appendChild(li);
+    })
 
 }
+
 
 function answerQuestion(selectedAnswer) {
     console.log(selectedAnswer);
@@ -156,5 +178,5 @@ startButton.onclick = function () {
 }
 
 submitButton.onclick = function () {
-    showResults();
+    saveScore();
 };
