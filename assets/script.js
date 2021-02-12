@@ -119,7 +119,7 @@ function highScores() {
 
 function saveScore() {
 
-    console.log("We got to save");
+    console.log("We're saving");
     var score = document.getElementById("score");
     var name = document.getElementById("highScore");
     console.log(score.innerText);
