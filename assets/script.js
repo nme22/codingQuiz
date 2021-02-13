@@ -117,7 +117,6 @@ function highScores() {
 
 
 function saveScore() {
-
     var score = document.getElementById("score").innerText;
     var name = document.getElementById("highScore").value;
     console.log(score);
@@ -140,11 +139,13 @@ function saveScore() {
     var listScores = document.createElement("ul")
 
     JSON.parse(localStorage.getItem("highscores")).map(function (score) {
-        console.log("HEY IRAN");
+        console.log("HEY I RAN");
         var li = document.createElement("li")
         li.innerHTML = `${score.name} -- ${score.score}`
         listScores.appendChild(li);
     })
+
+answerContainer.appendChild(listScores);
 
 }
 
