@@ -138,7 +138,7 @@ function saveScore() {
 
     var listScores = document.createElement("ul")
 
-    JSON.parse(localStorage.getItem("highscores")).map(function (score) {
+    JSON.parse(localStorage.getItem("highscores")).slice(0, 4).map(function (score) {
         console.log("HEY I RAN");
         var li = document.createElement("li")
         li.innerHTML = `${score.name} -- ${score.score}`
@@ -146,6 +146,8 @@ function saveScore() {
     })
 
 answerContainer.appendChild(listScores);
+
+
 
 }
 
